@@ -1,4 +1,4 @@
-package pageobjects.modules.cookiebanner;
+package modules.cookiebanner;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -12,21 +12,13 @@ public class PrivacyPreferenceCenter {
 
     private WebDriverWait wait;
 
-    @FindBy(css = "li[title='First Party Analytics Cookies']")
-    public WebElement firstPartyAnalyticsCookies;
-    @FindBy(css = "li[title='Performance and Functional Cookies']")
-    public WebElement performanceAndFunctionalCookies;
-    @FindBy(css = "li[title='Advertising and Social Media Cookies']")
-    public WebElement advertisingAndSocialMediaCookies;
-    @FindBy(linkText = "Allow All")
-    public WebElement allowAllButton;
-    @FindBy(linkText = "Save Settings")
-    public WebElement saveSettingsButton;
-    @FindBy(css = "#optanon-popup-body-right > h3")
-    public WebElement categoryIndicator;
-    @FindBy(css = "#optanon-popup-more-info-bar form > fieldset > p > label")
-    public WebElement statusToggle;
-
+    @FindBy(css = "li[title='First Party Analytics Cookies']") private WebElement firstPartyAnalyticsCookies;
+    @FindBy(css = "li[title='Performance and Functional Cookies']") private WebElement performanceAndFunctionalCookies;
+    @FindBy(css = "li[title='Advertising and Social Media Cookies']") private WebElement advertisingAndSocialMediaCookies;
+    @FindBy(linkText = "Allow All") private WebElement allowAllButton;
+    @FindBy(linkText = "Save Settings") private WebElement saveSettingsButton;
+    @FindBy(css = "#optanon-popup-body-right > h3") private WebElement categoryIndicator;
+    @FindBy(css = "#optanon-popup-more-info-bar form > fieldset > p > label") private WebElement statusToggle;
 
     public PrivacyPreferenceCenter(WebDriver driver) {
         AjaxElementLocatorFactory ajaxElementLocatorFactory = new AjaxElementLocatorFactory(driver, 10);

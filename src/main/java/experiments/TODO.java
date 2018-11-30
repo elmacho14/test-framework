@@ -38,6 +38,13 @@ public class TODO {
     * Simply call the getChromeOptionsInstance() or getFirefoxOptionsInstance() then call method setHeadless(true).
     * */
 
+    // TODO: Class Generics
+    /*
+    * This is no longer needed. Framework arch will no longer be based on POM, but on MOM. Meaning, every clicking
+    * action (method) will no longer require the method to return an instance of the POM since we won't be creating
+    * POMs anymore.
+    * */
+
     // TODO: Cloud testing support
     // TODO: Unit testing
     // TODO: Integration testing
@@ -45,9 +52,9 @@ public class TODO {
     // TODO: Reporting
     // TODO: Continuous Integration
     // TODO: Checking if a page is testable - PageTestability class
-    // TODO: Class Generics
     // TODO: Feedback loop
     // TODO: UI Region Testing
+    // TODO: Test Data
 
     // Kristoffer, Axel, Luigi, Camille, Kevin, Gil, Mark, Julien Augusto
 }

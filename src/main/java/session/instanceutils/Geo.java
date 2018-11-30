@@ -1,4 +1,4 @@
-package session.sessionutils;
+package session.instanceutils;
 
 public interface Geo {
 

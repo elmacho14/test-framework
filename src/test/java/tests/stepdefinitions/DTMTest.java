@@ -1,4 +1,4 @@
-package stepdefinitions;
+package tests.stepdefinitions;
 
 import session.Instance;
 

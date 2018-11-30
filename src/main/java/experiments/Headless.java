@@ -1,11 +1,11 @@
 package experiments;
 
-import pageobjects.modules.FeaturedInsightModule;
-import pageobjects.modules.cookiebanner.CookieBanner;
+import modules.FeaturedInsightModule;
+import modules.cookiebanner.CookieBanner;
 import session.Instance;
-import session.sessionutils.Environment;
-import session.sessionutils.Geo;
-import session.sessionutils.Page;
+import session.instanceutils.Environment;
+import session.instanceutils.Geo;
+import session.instanceutils.Page;
 import utilities.Wait;
 
 public class Headless {
@@ -13,7 +13,7 @@ public class Headless {
         Instance instance = new Instance();
         instance.getFirefoxOptionsInstance().setHeadless(true);
         instance.createFirefoxSessionAndNavigateTo(
-                instance.urlBuilder(Environment.PRODUCTION, Geo.US_EN, Page.ARTIFICIALINDEX),
+                Environment.PRODUCTION + Geo.US_EN + Page.ARTIFICIALINDEX,
                 false
         );
 
