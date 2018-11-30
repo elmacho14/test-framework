@@ -8,6 +8,9 @@ public class Wait {
 
     /**
      * This method will wait x seconds before the next lines of code can run
+     *
+     * DO NOT ABUSE THIS METHOD. Do not use it for waiting on an element
+     * to appear, to be clickable, etc. You should still use WebDriver's explicitwait.
      * @param timeInSeconds The amount of time you want to wait
      */
     public static void waitFor(int timeInSeconds) {

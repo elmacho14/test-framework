@@ -1,6 +1,6 @@
-Feature: DTM
+Feature: DTM testing
 
-  Background:
+  Background: As a user, I want to be able to automate my DTM testing.
 
   Scenario Outline:
     Given I'm using the environment

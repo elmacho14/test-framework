@@ -1,21 +1,10 @@
 package tests;
 
-import driversession.Instance;
-import org.openqa.selenium.remote.CapabilityType;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-import pageobjects.commonmodules.cookiebanner.CookieBanner;
-import pageobjects.pageclasses.JobSearch;
-import utilities.Wait;
-import utilities.browsermob.NetworkRequests;
-
-import java.util.Set;
+import session.Instance;
 
 public class AnalyticsTest extends Instance {
 
-    private NetworkRequests networkRequests;
+    /*private NetworkRequests networkRequests;
 
     @AfterMethod
     public void teardown() {
@@ -59,5 +48,5 @@ public class AnalyticsTest extends Instance {
         System.out.println("TRACK LINK REQUEST\n");
         keys.forEach(key -> System.out.printf("%s = %s\n", key, NetworkRequests.varData.get(key)));
         System.out.println("\n");
-    }
+    }*/
 }

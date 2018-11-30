@@ -1,4 +1,4 @@
-package pageobjects.accenture.pageclasses;
+package pageobjects.pageclasses;
 
 public class PrivacyPolicy {
 }

@@ -1,6 +1,6 @@
 package utilities.browsermob;
 
-import driversession.Instance;
+import session.Instance;
 import net.lightbody.bmp.BrowserMobProxy;
 import net.lightbody.bmp.BrowserMobProxyServer;
 import net.lightbody.bmp.client.ClientUtil;
@@ -9,22 +9,31 @@ import net.lightbody.bmp.core.har.HarRequest;
 import net.lightbody.bmp.proxy.CaptureType;
 import org.openqa.selenium.Proxy;
 import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import java.net.URLDecoder;
 import java.util.*;
 
 public class NetworkRequests extends Instance {
 
-    public static BrowserMobProxy proxy;
-    public static HashMap<String, String> varData;
+    private HashMap<String, String> variableMap;
+    private static BrowserMobProxy proxy;
     private HarEntry harEntry;
     private List<HarEntry> requests;
     private List<HarEntry> filteredRequests = new ArrayList<>();
     private String requestUrl;
 
-    public static void startProxyServer() {
-        varData = new HashMap<>();
+    private NetworkRequests() {
+        variableMap = new HashMap<>();
+    }
 
+    /**
+     * Before anything else, you need to invoke startProxyServer().
+     * This static method sets everything up for Network manipulation
+     * @param capabilities Pass-by-reference, to initialize capabilities
+     * @return Returns an instance of NetworkRequests
+     */
+    public static NetworkRequests startProxyServer(DesiredCapabilities capabilities) {
         // start the proxy
         proxy = new BrowserMobProxyServer();
         proxy.start(0);
@@ -40,6 +49,8 @@ public class NetworkRequests extends Instance {
 
         // create a new HAR
         proxy.newHar();
+
+        return new NetworkRequests();
     }
 
     public static void stopProxyServer() {
@@ -49,7 +60,7 @@ public class NetworkRequests extends Instance {
     /**
      * Sets the value of requestUrl. Call this method if
      * you don't need to specify multiple request URLs
-     *
+     * <p>
      * Note: The requestUrl global variable will be set to null if calling
      * getAllRequestsByRequestUrl(String requestUrl) method.
      */
@@ -67,13 +78,14 @@ public class NetworkRequests extends Instance {
     /**
      * Filters all requests that contains a specific request URL.
      * Call this method if you need to specify multiple request URLs.
-     *
+     * <p>
      * Note: The requestUrl global variable will be set to null
      * when calling this method as the rule for using the same requestUrl
      * as filter across all triggered requests is no longer honored.
-     *
+     * <p>
      * Call the setRequestUrl() method again if you wish to use 1
      * request URL, e.g., obj.setRequestUrl()
+     *
      * @param requestUrl
      */
     public NetworkRequests getAllRequestsByRequestUrl(String requestUrl) {
@@ -102,6 +114,7 @@ public class NetworkRequests extends Instance {
     /**
      * Returns a HarEntry list of all the requests filtered
      * by the request url provided to the setRequestUrl() method
+     *
      * @return
      */
     public List<HarEntry> getAllRequestsAsList() {
@@ -111,6 +124,7 @@ public class NetworkRequests extends Instance {
 
     /**
      * Gets image request at page load
+     *
      * @return
      */
     public NetworkRequests pageViewRequest() {
@@ -123,6 +137,7 @@ public class NetworkRequests extends Instance {
 
     /**
      * Always gets the latest request triggered after performing some action (e.g., click)
+     *
      * @return
      */
     public NetworkRequests trackLinkRequest() {
@@ -137,12 +152,12 @@ public class NetworkRequests extends Instance {
     /**
      * Gets all the variables for a specific request - no filters, no extra steps, no drama
      */
-    public void getAllVariables() {
+    public HashMap<String, String> getAllVariables() {
         HarRequest request = harEntry.getRequest();
         String methodType = request.getMethod();
 
         if (methodType.equals("GET")) {
-            request.getQueryString().forEach(data -> varData.put(data.getName(), data.getValue()));
+            request.getQueryString().forEach(data -> variableMap.put(data.getName(), data.getValue()));
 
         } else if (methodType.equals("POST")) {
             String text = request.getPostData().getText();
@@ -158,26 +173,29 @@ public class NetworkRequests extends Instance {
                 String[] splitStr = str.split("=", 2);
                 int arraySize = splitStr.length;
                 if (arraySize > 1) {
-                    varData.put(splitStr[0], splitStr[1]);
+                    variableMap.put(splitStr[0], splitStr[1]);
                 } else {
-                    varData.put(splitStr[0], null);
+                    variableMap.put(splitStr[0], null);
                 }
             });
         }
+
+        return variableMap;
     }
 
     /**
      * Gets specific variables as defined by the user.
+     *
      * @param variables
      */
-    public void getVariables(String... variables) {
+    public HashMap<String, String> getVariables(String... variables) {
         HarRequest request = harEntry.getRequest();
         String methodType = request.getMethod();
 
         if (methodType.equals("GET")) {
             Arrays.asList(variables).forEach(variable -> request.getQueryString().forEach(data -> {
                 if (data.getName().equals(variable)) {
-                    varData.put(data.getName(), data.getValue());
+                    variableMap.put(data.getName(), data.getValue());
                 }
             }));
 
@@ -197,15 +215,17 @@ public class NetworkRequests extends Instance {
                     int arraySize = splitStr.length;
                     if (arraySize > 1) {
                         if (variable.equals(splitStr[0])) {
-                            varData.put(splitStr[0], splitStr[1]);
+                            variableMap.put(splitStr[0], splitStr[1]);
                         }
                     } else {
                         if (variable.equals(splitStr[0])) {
-                            varData.put(splitStr[0], null);
+                            variableMap.put(splitStr[0], null);
                         }
                     }
                 });
             });
         }
+
+        return variableMap;
     }
 }

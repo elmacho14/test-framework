@@ -1,17 +1,17 @@
 package utilities;
 
 
-import driversession.Instance;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 /**
  * Created by kristian.g.maglasang on 8/24/2016.
  */
-public class Highlight extends Instance {
+public class Highlight {
 
-    public static void highlightElement(WebElement element, int duration) {
+    public static void highlightElement(WebDriver driver, WebElement element, int duration) {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         String original_style = element.getAttribute("style");
 
@@ -24,7 +24,7 @@ public class Highlight extends Instance {
                 "border: 6px solid red; border-style: solid;");
 
         if (duration > 0) {
-            Wait.waitFor(1);
+            Wait.waitFor(duration);
             js.executeScript("arguments[0].setAttribute(arguments[1], arguments[2])", element, "style",
                     original_style);
         }

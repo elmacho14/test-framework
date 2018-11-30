@@ -1,19 +1,19 @@
 package utilities;
 
-import driversession.Instance;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import javax.swing.*;
 import java.util.concurrent.TimeUnit;
 
-public class ESOLogin extends Instance {
+public class ESOLogin {
 
     private static By esoTitle = By.id("signOnTitle");
 
-    public static void waitUntilUserIsLoggedIn() {
-        wait = new WebDriverWait(driver, 30);
+    public static void waitUntilUserIsLoggedIn(WebDriver driver) {
+        WebDriverWait wait = new WebDriverWait(driver, 30);
         wait.until(ExpectedConditions.visibilityOfElementLocated(esoTitle));
         boolean flag = false;
 
@@ -26,7 +26,7 @@ public class ESOLogin extends Instance {
                 flag = true;
                 break;
             } else if (n == JOptionPane.CANCEL_OPTION) {
-                quitDriverSession();
+                //TODO quitDriverSession();
                 break;
             }
         }

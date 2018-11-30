@@ -1,26 +1,10 @@
 package stepdefinitions;
 
-import cucumber.api.DataTable;
-import cucumber.api.java.After;
-import cucumber.api.java.Before;
-import cucumber.api.java.en.And;
-import cucumber.api.java.en.Given;
-import cucumber.api.java.en.Then;
-import cucumber.api.java.en.When;
-import driversession.Instance;
-import net.lightbody.bmp.core.har.HarEntry;
-import org.apache.commons.lang3.StringUtils;
-import org.testng.Assert;
-import pageobjects.commonmodules.cookiebanner.CookieBanner;
-import utilities.browsermob.NetworkRequests;
-
-import java.util.*;
-
-import static utilities.Wait.waitFor;
+import session.Instance;
 
 public class DTMTest extends Instance {
 
-    private String testEnvi;
+    /*private String testEnvi;
     private NetworkRequests networkRequests;
     private List<HarEntry> requests;
     private CookieBanner cookieBanner;
@@ -145,5 +129,5 @@ public class DTMTest extends Instance {
         cookieBanner.clickAcceptCookies();
         driver.navigate().refresh();
         waitFor(3);
-    }
+    }*/
 }

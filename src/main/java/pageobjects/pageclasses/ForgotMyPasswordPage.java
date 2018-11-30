@@ -1,11 +1,5 @@
 package pageobjects.pageclasses;
 
+public class ForgotMyPasswordPage {
 
-import driversession.Instance;
-
-public class ForgotMyPasswordPage extends Instance {
-
-    public String getPageTitle() {
-        return driver.getTitle();
-    }
 }

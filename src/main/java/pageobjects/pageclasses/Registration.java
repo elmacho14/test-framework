@@ -1,8 +1,8 @@
 package pageobjects.pageclasses;
 
-import driversession.Instance;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindAll;
 import org.openqa.selenium.support.FindBy;
@@ -19,68 +19,98 @@ import java.util.List;
 /**
  * Created by kristian.g.maglasang on 6/30/2017.
  */
-public class Registration extends Instance {
+public class Registration {
 
-    {
+    private WebDriverWait wait;
+    private JavascriptExecutor jsExecutor;
+    private WebDriver driver;
+
+    @FindBy(id = "CareersRegistration_EmailAddress")
+    private WebElement emailAddressField;
+    @FindBy(id = "CareersRegistration_Password")
+    private WebElement passwordField;
+    @FindBy(id = "CareersRegistration_RetypePassword")
+    private WebElement retypePasswordField;
+
+    @FindBy(css = "div[aria-labelledby='ddBoxRegistrationSalutation-label']")
+    private WebElement salutationDropdown;
+    @FindBy(css = "div[aria-labelledby='ddBoxRegistrationSalutation-label'] > div.dropdown-menu")
+    private WebElement salutationDropdownMenu;
+    @FindAll(@FindBy(css = "#ddBoxRegistrationSalutation-ulid > li"))
+    private List<WebElement> salutationDropdownMenuOptions;
+
+    @FindBy(id = "CareerRegistration_FirstName")
+    private WebElement firstNameField;
+    @FindBy(id = "CareerRegistration_LastName")
+    private WebElement lastNameField;
+
+    @FindBy(css = "div[aria-labelledby='ddBoxRegistrationCountryRegion-label']")
+    private WebElement countryRegionDropdown;
+    @FindBy(css = "div[aria-labelledby='ddBoxRegistrationCountryRegion-label'] > div.dropdown-menu")
+    private WebElement countryRegionDropdownMenu;
+    @FindAll(@FindBy(css = "#ddBoxRegistrationCountryRegion-ulid > li"))
+    private List<WebElement> countryRegionDropdownMenuOptions;
+
+    @FindBy(css = "button[data-id='ddBoxRegistrationStateProvince']")
+    private WebElement validateField;
+    @FindBy(css = "div[aria-labelledby='ddBoxRegistrationStateProvince-label']")
+    private WebElement stateProvinceDropdown;
+    @FindBy(css = "div[aria-labelledby='ddBoxRegistrationStateProvince-label'] > div.dropdown-menu")
+    private WebElement stateProvinceDropdownMenu;
+    @FindAll(@FindBy(css = "#ddBoxRegistrationStateProvince-ulid > li"))
+    private List<WebElement> stateProvinceDropdownMenuOptions;
+
+    @FindBy(id = "CareerRegistration_City")
+    private WebElement cityField;
+
+    @FindBy(id = "chkJobAlert")
+    private WebElement subscribeToEmailAlertsTextbox;
+
+    @FindBy(css = "div[aria-labelledby='ddlPreferredCountryRegion-label']")
+    private WebElement jobPreferenceCountryDropdown;
+    @FindBy(css = "div[aria-labelledby='ddlPreferredCountryRegion-label'] > div.dropdown-menu")
+    private WebElement jobPreferenceCountryDropdownMenu;
+    @FindAll(@FindBy(css = "#ddlPreferredCountryRegion-ulid > li"))
+    private List<WebElement> jobPreferenceCountryDropdownMenuOptions;
+
+    @FindBy(css = "div[aria-labelledby='ddPreferredExperience-label']")
+    private WebElement jobPreferenceExperienceDropdown;
+    @FindBy(css = "div[aria-labelledby='ddPreferredExperience-label'] > div.dropdown-menu")
+    private WebElement jobPreferenceExperienceDropdownMenu;
+    @FindAll(@FindBy(css = "#ddPreferredExperience-ulid > li"))
+    private List<WebElement> jobPreferenceExperienceDropdownMenuOptions;
+
+    @FindBy(id = "RegCitiesLink")
+    private WebElement jobPreferenceSelectCitiesLink;
+
+    @FindBy(css = "button[data-id='ddBoxRegistrationCareersSkill'][title='Select']")
+    private WebElement jobPreferenceCareersSkillDropdown;
+    @FindBy(css = "div[aria-labelledby='ddBoxRegistrationCareersSkill-label'] > div.dropdown-menu")
+    private WebElement jobPreferenceCareersSkillDropdownMenu;
+    @FindAll(@FindBy(css = "#ddBoxRegistrationCareersSkill-ulid > li"))
+    private List<WebElement> jobPreferenceCareersSkillDropdownMenuOptions;
+
+    @FindBy(id = "RegIndustryLink")
+    private WebElement jobPreferenceSelectIndustriesLink;
+    @FindAll(@FindBy(css = "#ModalRegIndustries input"))
+    private List<WebElement> jobPreferenceIndustriesOptions;
+    @FindBy(id = "btnIndustryUpdate")
+    private WebElement jobPreferenceIndustriesCloseButton;
+
+    @FindBy(id = "chkOpt")
+    private WebElement stayConnectedCheckbox;
+
+    @FindBy(id = "btnRegister")
+    private WebElement registerButton;
+
+    private By stayConnectedCheckboxAttribute = By.id("chkOpt");
+
+    public Registration(WebDriver driver) {
+        AjaxElementLocatorFactory ajaxElementLocatorFactory = new AjaxElementLocatorFactory(driver, 10);
+        PageFactory.initElements(ajaxElementLocatorFactory, this);
         wait = new WebDriverWait(driver, 10);
         jsExecutor = (JavascriptExecutor) driver;
-    }
-
-    @FindBy(id = "CareersRegistration_EmailAddress") private WebElement emailAddressField;
-    @FindBy (id = "CareersRegistration_Password") private WebElement passwordField;
-    @FindBy (id = "CareersRegistration_RetypePassword") private WebElement retypePasswordField;
-
-    @FindBy (css = "div[aria-labelledby='ddBoxRegistrationSalutation-label']") private WebElement salutationDropdown;
-    @FindBy (css = "div[aria-labelledby='ddBoxRegistrationSalutation-label'] > div.dropdown-menu") private WebElement salutationDropdownMenu;
-    @FindAll(@FindBy (css = "#ddBoxRegistrationSalutation-ulid > li")) private List<WebElement> salutationDropdownMenuOptions;
-
-    @FindBy (id = "CareerRegistration_FirstName") private WebElement firstNameField;
-    @FindBy (id = "CareerRegistration_LastName") private WebElement lastNameField;
-
-    @FindBy (css = "div[aria-labelledby='ddBoxRegistrationCountryRegion-label']") private WebElement countryRegionDropdown;
-    @FindBy (css = "div[aria-labelledby='ddBoxRegistrationCountryRegion-label'] > div.dropdown-menu") private WebElement countryRegionDropdownMenu;
-    @FindAll (@FindBy (css = "#ddBoxRegistrationCountryRegion-ulid > li")) private List<WebElement> countryRegionDropdownMenuOptions;
-
-    @FindBy (css = "button[data-id='ddBoxRegistrationStateProvince']") private WebElement validateField;
-    @FindBy (css = "div[aria-labelledby='ddBoxRegistrationStateProvince-label']") private WebElement stateProvinceDropdown;
-    @FindBy (css = "div[aria-labelledby='ddBoxRegistrationStateProvince-label'] > div.dropdown-menu") private WebElement stateProvinceDropdownMenu;
-    @FindAll (@FindBy (css = "#ddBoxRegistrationStateProvince-ulid > li")) private List<WebElement> stateProvinceDropdownMenuOptions;
-
-    @FindBy (id = "CareerRegistration_City") private WebElement cityField;
-
-    @FindBy (id = "chkJobAlert") private WebElement subscribeToEmailAlertsTextbox;
-
-    @FindBy (css = "div[aria-labelledby='ddlPreferredCountryRegion-label']") private WebElement jobPreferenceCountryDropdown;
-    @FindBy (css = "div[aria-labelledby='ddlPreferredCountryRegion-label'] > div.dropdown-menu") private WebElement jobPreferenceCountryDropdownMenu;
-    @FindAll (@FindBy (css = "#ddlPreferredCountryRegion-ulid > li")) private List<WebElement> jobPreferenceCountryDropdownMenuOptions;
-
-    @FindBy (css = "div[aria-labelledby='ddPreferredExperience-label']") private WebElement jobPreferenceExperienceDropdown;
-    @FindBy (css = "div[aria-labelledby='ddPreferredExperience-label'] > div.dropdown-menu") private WebElement jobPreferenceExperienceDropdownMenu;
-    @FindAll (@FindBy (css = "#ddPreferredExperience-ulid > li")) private List<WebElement> jobPreferenceExperienceDropdownMenuOptions;
-
-    @FindBy (id = "RegCitiesLink") private WebElement jobPreferenceSelectCitiesLink;
-
-    @FindBy (css = "button[data-id='ddBoxRegistrationCareersSkill'][title='Select']") private WebElement jobPreferenceCareersSkillDropdown;
-    @FindBy (css = "div[aria-labelledby='ddBoxRegistrationCareersSkill-label'] > div.dropdown-menu") private WebElement jobPreferenceCareersSkillDropdownMenu;
-    @FindAll (@FindBy (css = "#ddBoxRegistrationCareersSkill-ulid > li")) private List<WebElement> jobPreferenceCareersSkillDropdownMenuOptions;
-
-    @FindBy (id = "RegIndustryLink") private WebElement jobPreferenceSelectIndustriesLink;
-    @FindAll(@FindBy (css = "#ModalRegIndustries input")) private List<WebElement> jobPreferenceIndustriesOptions;
-    @FindBy (id = "btnIndustryUpdate") private WebElement jobPreferenceIndustriesCloseButton;
-
-    @FindBy (id = "chkOpt") private WebElement stayConnectedCheckbox;
-
-    @FindBy (id = "btnRegister") private WebElement registerButton;
-
-    By stayConnectedCheckboxAttribute = By.id("chkOpt");
-
-    public Registration() {
-        ajaxElementLocatorFactory = new AjaxElementLocatorFactory(driver, 10);
-        PageFactory.initElements(ajaxElementLocatorFactory, this);
-    }
-
-    public String getPageTitle() {
-        return driver.getTitle();
+        this.driver = driver;
     }
 
     public void enterEmailAddress(String emailAddress) {
@@ -128,8 +158,7 @@ public class Registration extends Instance {
     public void selectProvince() {
         if (validateField.getAttribute("title").equals("Not Applicable")) {
             // SKIP
-        }
-        else {
+        } else {
             stateProvinceDropdown.click();
             if (stateProvinceDropdownMenu.isDisplayed()) {
                 int randomNumber = RandomNumber.generateRandomNumber(stateProvinceDropdownMenuOptions);
@@ -201,7 +230,7 @@ public class Registration extends Instance {
             if (!randomNumbers.contains(randomNumber)) {
                 randomNumbers.add(randomNumber);
                 jobPreferenceIndustriesOptions.get(randomNumber).click();
-                flag ++;
+                flag++;
             }
 
             if (flag == 3) {
@@ -214,7 +243,7 @@ public class Registration extends Instance {
 
     public void clickStayConnectCheckbox(boolean stayConnected) {
         wait.until(ExpectedConditions.elementToBeClickable(stayConnectedCheckboxAttribute));
-        if (stayConnected){
+        if (stayConnected) {
             stayConnectedCheckbox.click();
         }
     }
@@ -233,6 +262,6 @@ public class Registration extends Instance {
 
     public RegistrationConfirmation clickRegisterButton() {
         registerButton.click();
-        return new RegistrationConfirmation();
+        return new RegistrationConfirmation(driver);
     }
 }
