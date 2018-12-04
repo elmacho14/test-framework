@@ -14,7 +14,7 @@ public class TODO {
     * of the page you wish to test.
     * */
 
-    // TODO: Parallel testing - DONE
+    // TODO: Parallel testing
     /*
     * Tests will be grouped inside a test class. There will no longer be the need for an XML for each individual
     * test, everything will be grouped inside the test class itself. Browser, page, geo, envi, etc. will all
@@ -45,16 +45,30 @@ public class TODO {
     * POMs anymore.
     * */
 
+    // TODO: Reporting
+    /*
+    * There are multiple types of reporting formats, of which each individual style might suit a particular
+    * testing activity. The challenge, if we select 2 or more different styles to support, is creating a library
+    * and finding the common theme between them.
+    *
+    * Update 1: Apparently, the majority of the reporters are 'PRO' only, meaning it is paid. Sad.
+    * So right now, we'll stick with only 1 reporter, HtmlReporter. There are 2 others (I think) that's free,
+    * but I don't see a use case for them, yet.
+    *
+    * Update 2: We can add BDD-style reporting, but requires a bit of work when writing the step definitions.
+    * I'll try to create a custom listener for Cucumber <fingers crossed>.
+    * */
+
     // TODO: Cloud testing support
     // TODO: Unit testing
     // TODO: Integration testing
     // TODO: README.md file
-    // TODO: Reporting
     // TODO: Continuous Integration
     // TODO: Checking if a page is testable - PageTestability class
     // TODO: Feedback loop
     // TODO: UI Region Testing
     // TODO: Test Data
 
-    // Kristoffer, Axel, Luigi, Camille, Kevin, Gil, Mark, Julien Augusto
+    // Kristoffer, Axel, Luigi, Camille, Julien Augusto, Sembrano
+    // Kevin, Gil, Lloyd, Cyle, Raymond, Jz
 }
