@@ -3,6 +3,7 @@ package tests;
 import com.applitools.eyes.selenium.Eyes;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterGroups;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import modules.FeaturedInsightModule;
@@ -12,22 +13,41 @@ import session.instanceutils.Environment;
 import session.instanceutils.Geo;
 import session.instanceutils.Page;
 import utilities.Applitools;
+import utilities.PageTestability;
 import utilities.Wait;
 
 public class Test2 {
 
     private Instance instance;
     private Applitools applitools;
+    private String pageUrl = Environment.PRODUCTION + Geo.US_EN + Page.ARTIFICIALINDEX;
+    private PageTestability pageTestability;
 
     @BeforeClass
     public void setup() {
         instance = new Instance();
-        instance.getFirefoxOptionsInstance().setHeadless(true);
-        instance.createFirefoxSessionAndNavigateTo(
-                Environment.PRODUCTION + Geo.US_EN + Page.ARTIFICIALINDEX,
-                false
-        );
+        instance.getChromeOptionsInstance().setHeadless(true);
+        instance.createChromeSessionAndNavigateTo(pageUrl, false);
+        pageTestability = new PageTestability(instance.getDriver());
+    }
 
+    @Test (groups = {"pageTestability"})
+    public void statusCodeCheck() {
+        Assert.assertEquals(pageTestability.getPageStatusResponseCode(pageUrl), 200);
+    }
+
+    @Test (groups = {"pageTestability"})
+    public void renderingErrorCheck() {
+        Assert.assertFalse(pageTestability.areRenderingErrorsPresent());
+    }
+
+    @Test (groups = {"pageTestability"})
+    public void glassmapperCheck() {
+        Assert.assertFalse(pageTestability.areGlassmapperErrorsPresent());
+    }
+
+    @AfterGroups(value = "pageTestability")
+    public void afterPageTestability() {
         // Close banner
         Wait.waitFor(3);
         new CookieBanner(instance.getDriver()).closeBanner();
@@ -41,16 +61,19 @@ public class Test2 {
         eyes.checkWindow();
     }
 
-    @AfterClass
-    public void teardown() {
-        applitools.teardown();
-    }
-
-    @Test(priority = 1)
-    public void fimTest() {
+    @Test(
+            priority = 1,
+            description = "This is the first test.",
+            dependsOnGroups = "pageTestability")
+    public void featuredInsightModuleTest() {
         FeaturedInsightModule featuredInsightModule = new FeaturedInsightModule(instance.getDriver());
         featuredInsightModule.selectModule(0);
         featuredInsightModule.clickArticleTitle();
         Assert.assertTrue(instance.getDriver().getCurrentUrl().contains("insight-process-reimagined"));
+    }
+
+    @AfterClass
+    public void teardown() {
+        applitools.teardown();
     }
 }
