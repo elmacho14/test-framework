@@ -1,5 +1,6 @@
 package modules.cookiebanner;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -11,19 +12,27 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class PrivacyPreferenceCenter {
 
     private WebDriverWait wait;
+    private WebDriver driver;
 
-    @FindBy(css = "li[title='First Party Analytics Cookies']") private WebElement firstPartyAnalyticsCookies;
-    @FindBy(css = "li[title='Performance and Functional Cookies']") private WebElement performanceAndFunctionalCookies;
-    @FindBy(css = "li[title='Advertising and Social Media Cookies']") private WebElement advertisingAndSocialMediaCookies;
-    @FindBy(linkText = "Allow All") private WebElement allowAllButton;
-    @FindBy(linkText = "Save Settings") private WebElement saveSettingsButton;
+    private By moduleLocator = By.id("optanon-popup-wrapper");
+
+    @FindBy(css = "#optanon-menu li:nth-of-type(3)") private WebElement firstPartyAnalyticsCookies;
+    @FindBy(css = "#optanon-menu li:nth-of-type(4)") private WebElement performanceAndFunctionalCookies;
+    @FindBy(css = "#optanon-menu li:nth-of-type(5)") private WebElement advertisingAndSocialMediaCookies;
+    @FindBy(css = "#optanon-popup-bottom > div:nth-of-type(2) > div > a") private WebElement allowAllButton;
+    @FindBy(css = "#optanon-popup-bottom > div:nth-of-type(1) > div > a") private WebElement saveSettingsButton;
     @FindBy(css = "#optanon-popup-body-right > h3") private WebElement categoryIndicator;
     @FindBy(css = "#optanon-popup-more-info-bar form > fieldset > p > label") private WebElement statusToggle;
 
     public PrivacyPreferenceCenter(WebDriver driver) {
-        AjaxElementLocatorFactory ajaxElementLocatorFactory = new AjaxElementLocatorFactory(driver, 10);
-        PageFactory.initElements(ajaxElementLocatorFactory, this);
+        this.driver = driver;
         wait = new WebDriverWait(driver, 10);
+        AjaxElementLocatorFactory ajaxElementLocatorFactory = new AjaxElementLocatorFactory(getModuleContainer(), 10);
+        PageFactory.initElements(ajaxElementLocatorFactory, this);
+    }
+
+    private WebElement getModuleContainer() {
+        return wait.until(ExpectedConditions.visibilityOf(driver.findElement(moduleLocator)));
     }
 
     /**
