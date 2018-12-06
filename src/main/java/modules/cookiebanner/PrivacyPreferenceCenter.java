@@ -16,12 +16,12 @@ public class PrivacyPreferenceCenter {
 
     private By moduleLocator = By.id("optanon-popup-wrapper");
 
-    @FindBy(css = "#optanon-menu li:nth-of-type(3)") private WebElement firstPartyAnalyticsCookies;
-    @FindBy(css = "#optanon-menu li:nth-of-type(4)") private WebElement performanceAndFunctionalCookies;
-    @FindBy(css = "#optanon-menu li:nth-of-type(5)") private WebElement advertisingAndSocialMediaCookies;
+    @FindBy(css = "#optanon-menu li:nth-of-type(3) > p > a") private WebElement firstPartyAnalyticsCookies;
+    @FindBy(css = "#optanon-menu li:nth-of-type(4) > p > a") private WebElement performanceAndFunctionalCookies;
+    @FindBy(css = "#optanon-menu li:nth-of-type(5) > p > a") private WebElement advertisingAndSocialMediaCookies;
     @FindBy(css = "#optanon-popup-bottom > div:nth-of-type(2) > div > a") private WebElement allowAllButton;
     @FindBy(css = "#optanon-popup-bottom > div:nth-of-type(1) > div > a") private WebElement saveSettingsButton;
-    @FindBy(css = "#optanon-popup-body-right > h3") private WebElement categoryIndicator;
+    @FindBy(css = "#optanon-popup-body-right > div > h3") private WebElement categoryIndicator;
     @FindBy(css = "#optanon-popup-more-info-bar form > fieldset > p > label") private WebElement statusToggle;
 
     public PrivacyPreferenceCenter(WebDriver driver) {
