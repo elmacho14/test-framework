@@ -7,6 +7,6 @@
     </listeners>
 
     <suite-files>
-        <suite-file path="parallel-tests"/>
+        <suite-file path="shakeout"/>
     </suite-files>
 </suite>

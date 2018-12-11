@@ -5,9 +5,7 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
-import org.testng.ITestContext;
-import org.testng.ITestListener;
-import org.testng.ITestResult;
+import org.testng.*;
 import org.testng.annotations.AfterTest;
 
 import java.io.IOException;
@@ -19,19 +17,21 @@ import java.util.Date;
  * Created by kristian.g.maglasang on 9/29/2016.
  */
 
-public class TestListener implements ITestListener {
+public class TestListener implements ITestListener, ISuiteListener {
     private ExtentReports extent;
     private ExtentTest test;
     private String screenshotPath;
 
     @Override
     public void onTestStart(ITestResult iTestResult) {
-        test = extent.createTest(iTestResult.getMethod().getMethodName());
+        //test = extent.createTest(iTestResult.getMethod().getMethodName());
     }
 
     @Override
     public void onTestSuccess(ITestResult iTestResult) {
-        test.log(Status.PASS, MarkupHelper.createLabel("PASSED", ExtentColor.GREEN));
+        test
+                .createNode("This is a node at onTestSuccess")
+                .log(Status.PASS, MarkupHelper.createLabel("PASSED", ExtentColor.GREEN));
         onFinish();
 
         /*try {
@@ -53,7 +53,9 @@ public class TestListener implements ITestListener {
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            test.log(Status.FAIL, iTestResult.getThrowable().getMessage());
+            test
+                    .createNode("This is a node at onTestFailure")
+                    .log(Status.FAIL, iTestResult.getThrowable().getMessage());
             onFinish();
         }
     }
@@ -71,10 +73,11 @@ public class TestListener implements ITestListener {
 
     @Override
     public void onStart(ITestContext iTestContext) {
-        Date currentDateAndTime = Calendar.getInstance().getTime();
+        /*Date currentDateAndTime = Calendar.getInstance().getTime();
         SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy-hh.mm.ss");
         String formattedDateAndTime = dateFormat.format(currentDateAndTime);
-        extent = ExtentManager.createInstance("reports/" + iTestContext.getSuite().getName() + "_" + formattedDateAndTime + ".html");
+        extent = ExtentManager.createInstance("reports/" + iTestContext.getSuite().getName() + "_" + formattedDateAndTime + ".html");*/
+        test = extent.createTest(iTestContext.getCurrentXmlTest().getName());
     }
 
     @Override
@@ -86,9 +89,21 @@ public class TestListener implements ITestListener {
         extent.flush();
     }
 
-
     @AfterTest
     public void closeExtent() {
         //extent.close();
+    }
+
+    @Override
+    public void onStart(ISuite suite) {
+        Date currentDateAndTime = Calendar.getInstance().getTime();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy-hh.mm.ss");
+        String formattedDateAndTime = dateFormat.format(currentDateAndTime);
+        extent = ExtentManager.createInstance("reports/" + suite.getName() + "_" + formattedDateAndTime + ".html");
+    }
+
+    @Override
+    public void onFinish(ISuite suite) {
+
     }
 }
