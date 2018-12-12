@@ -57,6 +57,8 @@ public class TODO {
      *
      * Update 2: We can add BDD-style reporting, but requires a bit of work when writing the step definitions.
      * I'll try to create a custom listener for Cucumber <fingers crossed>.
+     *
+     * Update 3: Nope, can't do i. Pressed for time.
      * */
 
     // TODO: PageTestability class
@@ -69,16 +71,32 @@ public class TODO {
      * */
 
     // TODO: Cloud testing support
-    // TODO: Unit testing
-    // TODO: Integration testing
     // TODO: README.md file
     // TODO: Continuous Integration
     // TODO: Feedback loop
     // TODO: UI Region Testing
-    // TODO: Test Data
+    // TODO: RCA for failed tests (UI only)
+    // TODO: Test Data Management
     // TODO: 1 Applitools batch for multiple tests
     // TODO: Adding nodes in reports
 
     // Kristoffer, Axel, Luigi, Camille, Julien Augusto, Sembrano
     // Kevin, Gil, Lloyd, Cyle, Raymond, Jz
+
+    /*
+    * LIMITATIONS
+    * Module Design
+    * Cannot use the same module object once focus has shifted from it. Need to create a new object
+    *
+    * Reporting
+    * Unable to create test nodes for 2 or more test classes. Works for only 1.
+    * We may need to modify how tests are executed, or I may need to change the
+    * listener.
+    *
+    *
+    *
+    *
+    *
+    *
+    * */
 }
