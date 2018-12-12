@@ -19,7 +19,7 @@ public class ExtentManager {
         return extent;
     }
 
-    public static ExtentReports createInstance(String fileName) {
+    static ExtentReports createInstance(String fileName) {
         ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(fileName);
         htmlReporter.config().setTestViewChartLocation(ChartLocation.BOTTOM);
         htmlReporter.config().setChartVisibilityOnOpen(true);

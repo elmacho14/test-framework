@@ -19,17 +19,17 @@ import java.util.Date;
 
 public class TestListener implements ITestListener, ISuiteListener {
     private ExtentReports extent;
-    private ExtentTest test;
+    private ThreadLocal<ExtentTest> test = new ThreadLocal<>();
     private String screenshotPath;
 
     @Override
     public void onTestStart(ITestResult iTestResult) {
-        //test = extent.createTest(iTestResult.getMethod().getMethodName());
     }
 
     @Override
     public void onTestSuccess(ITestResult iTestResult) {
         test
+                .get()
                 .createNode("This is a node at onTestSuccess")
                 .log(Status.PASS, MarkupHelper.createLabel("PASSED", ExtentColor.GREEN));
         onFinish();
@@ -49,11 +49,12 @@ public class TestListener implements ITestListener, ISuiteListener {
     public void onTestFailure(ITestResult iTestResult) {
         try {
             //screenshotPath = Screenshot.captureScreenshot(iTestResult.getName());
-            test.fail("Snapshot of failure").addScreenCaptureFromPath("../" + screenshotPath);
+            test.get().fail("Snapshot of failure").addScreenCaptureFromPath("../" + screenshotPath);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
             test
+                    .get()
                     .createNode("This is a node at onTestFailure")
                     .log(Status.FAIL, iTestResult.getThrowable().getMessage());
             onFinish();
@@ -62,7 +63,7 @@ public class TestListener implements ITestListener, ISuiteListener {
 
     @Override
     public void onTestSkipped(ITestResult iTestResult) {
-        test.log(Status.SKIP, MarkupHelper.createLabel("SKIPPED", ExtentColor.ORANGE));
+        test.get().log(Status.SKIP, MarkupHelper.createLabel("SKIPPED", ExtentColor.ORANGE));
         onFinish();
     }
 
@@ -73,11 +74,8 @@ public class TestListener implements ITestListener, ISuiteListener {
 
     @Override
     public void onStart(ITestContext iTestContext) {
-        /*Date currentDateAndTime = Calendar.getInstance().getTime();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("MM-dd-yyyy-hh.mm.ss");
-        String formattedDateAndTime = dateFormat.format(currentDateAndTime);
-        extent = ExtentManager.createInstance("reports/" + iTestContext.getSuite().getName() + "_" + formattedDateAndTime + ".html");*/
-        test = extent.createTest(iTestContext.getCurrentXmlTest().getName());
+        ExtentTest extentInstance = extent.createTest(iTestContext.getCurrentXmlTest().getName());
+        test.set(extentInstance);
     }
 
     @Override
@@ -85,7 +83,7 @@ public class TestListener implements ITestListener, ISuiteListener {
 
     }
 
-    public void onFinish() {
+    private void onFinish() {
         extent.flush();
     }
 
