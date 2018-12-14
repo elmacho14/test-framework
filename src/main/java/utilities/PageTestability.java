@@ -19,6 +19,6 @@ public class PageTestability {
     }
 
     public boolean areGlassmapperErrorsPresent() {
-        return driver.getPageSource().contains("Glasmapper");
+        return driver.getPageSource().contains("Glassmapper");
     }
 }
