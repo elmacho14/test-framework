@@ -17,8 +17,8 @@ public class AdjacentTilesModule {
     private Actions actions;
 
     private By moduleLocator = By.cssSelector("section.container-block > .col-sm-12 > .col-sm-12 > div.adjacent-tiles-container");
-    private By columnLocator = By.cssSelector("div[class='col-sm-12'][style='display: block;']");
-    private By rowLocator = By.cssSelector("div.articles");
+    private By rowLocator = By.cssSelector("div[class='col-sm-12'][style='display: block;']");
+    private By columnLocator = By.cssSelector("div.articles");
 
     @FindBy (css = "p[class*='cardTitle'] > a") private WebElement header;
     @FindBy (css = "h2[class*='headline'] > a") private WebElement title;
@@ -40,9 +40,9 @@ public class AdjacentTilesModule {
      * @param column The column index within the block from which the module is located at.
      * @param row The row index within the column.
      */
-    public void selectModule(int blockIndex, int column, int row) {
+    public void selectModule(int blockIndex, int row, int column) {
         AjaxElementLocatorFactory ajaxElementLocatorFactory = new AjaxElementLocatorFactory(
-                getTile(getModuleContainer().get(blockIndex), column, row), 10);
+                getTile(getModuleContainer().get(blockIndex), row, column), 10);
         PageFactory.initElements(ajaxElementLocatorFactory, this);
     }
 
@@ -61,8 +61,8 @@ public class AdjacentTilesModule {
      * @param row The row index identifies the exact row the module will be located at from a particular column.
      * @return Returns the target module.
      */
-    private WebElement getTile(WebElement module, int column, int row) {
-        return module.findElements(columnLocator).get(column).findElements(rowLocator).get(row);
+    private WebElement getTile(WebElement module, int row, int column) {
+        return module.findElements(rowLocator).get(row).findElements(columnLocator).get(column);
     }
 
     /**
