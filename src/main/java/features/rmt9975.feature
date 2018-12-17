@@ -16,12 +16,12 @@ Feature: Cookies created by AcnCacheManager is displayed/triggered once the firs
     Then Cookies produced by AcnCacheManager is blocked "<cookies>"
 
     Examples:
-      | _url                                      | cookies               |
-      | https://www.accenture.com/at-de/loginpage | _ss_uid,_ss_ui,_ss_cs |
-      | https://www.accenture.com/bg-en/loginpage | _ss_uid,_ss_ui,_ss_cs |
-      | https://www.accenture.com/fr-fr/loginpage | _ss_uid,_ss_ui,_ss_cs |
-      | https://www.accenture.com/us-en/loginpage | _ss_uid,_ss_ui,_ss_cs |
-      | https://www.accenture.com/jp-ja/loginpage | _ss_uid,_ss_ui,_ss_cs |
+      | _url                                      | cookies             |
+      | https://www.accenture.com/at-de/loginpage |_ss_uid;_ss_ui;_ss_cs|
+      | https://www.accenture.com/bg-en/loginpage |_ss_uid;_ss_ui;_ss_cs|
+      | https://www.accenture.com/fr-fr/loginpage |_ss_uid;_ss_ui;_ss_cs|
+      | https://www.accenture.com/us-en/loginpage |_ss_uid;_ss_ui;_ss_cs|
+      | https://www.accenture.com/jp-ja/loginpage |_ss_uid;_ss_ui;_ss_cs|
 
   Scenario Outline: First Party analytics is enabled.
 
@@ -32,9 +32,9 @@ Feature: Cookies created by AcnCacheManager is displayed/triggered once the firs
     Then Cookies produced by AcnCacheManager is no longer blocked "<cookies>"
 
     Examples:
-      | _url                                      | cookies               |
-      | https://www.accenture.com/at-de/loginpage | _ss_uid,_ss_ui,_ss_cs |
-      | https://www.accenture.com/bg-en/loginpage | _ss_uid,_ss_ui,_ss_cs |
-      | https://www.accenture.com/fr-fr/loginpage | _ss_uid,_ss_ui,_ss_cs |
-      | https://www.accenture.com/us-en/loginpage | _ss_uid,_ss_ui,_ss_cs |
-      | https://www.accenture.com/jp-ja/loginpage | _ss_uid,_ss_ui,_ss_cs |
+      | _url                                      | cookies             |
+      | https://www.accenture.com/at-de/loginpage |_ss_uid;_ss_ui;_ss_cs|
+      | https://www.accenture.com/bg-en/loginpage |_ss_uid;_ss_ui;_ss_cs|
+      | https://www.accenture.com/fr-fr/loginpage |_ss_uid;_ss_ui;_ss_cs|
+      | https://www.accenture.com/us-en/loginpage |_ss_uid;_ss_ui;_ss_cs|
+      | https://www.accenture.com/jp-ja/loginpage |_ss_uid;_ss_ui;_ss_cs|

@@ -51,8 +51,8 @@ public class RMT9975Test {
     @Given("^I am at the Accenture page \"([^\"]*)\"$")
     public void i_am_at_the_Accenture_page(String url) {
         instance = new Instance();
-        //instance.getChromeOptionsInstance().setHeadless(true);
-        instance.createChromeSessionAndNavigateTo(url, false);
+        instance.getChromeOptionsInstance().setHeadless(true);
+        instance.createChromeSessionAndNavigateTo(url, true);
         driver = instance.getDriver();
         scenario.createNode(com.aventstack.extentreports.gherkin.model.Given.class, "I am at the " + url + " page").pass("");
     }
@@ -93,10 +93,13 @@ public class RMT9975Test {
         WebStorage webStorage = (WebStorage) driver;
         LocalStorage localStorage = webStorage.getLocalStorage();
         results = new ArrayList<>();
+        results.clear();
         localStorage.keySet().forEach(key -> {
-            if (Arrays.asList(cookies.split(",")).contains(key))
+            if (Arrays.asList(cookies.split(";")).contains(key)) {
                 System.out.println(key);
-            results.add(key);
+                results.add(key);
+            }
+
         });
 
         if (results.size() == 0)
@@ -119,10 +122,12 @@ public class RMT9975Test {
         WebStorage webStorage = (WebStorage) driver;
         LocalStorage localStorage = webStorage.getLocalStorage();
         results = new ArrayList<>();
+        results.clear();
         localStorage.keySet().forEach(key -> {
-            if (Arrays.asList(cookies.split(",")).contains(key))
+            if (Arrays.asList(cookies.split(";")).contains(key)) {
                 System.out.println(key);
-            results.add(key);
+                results.add(key);
+            }
         });
 
         if (results.size() >= 3)
