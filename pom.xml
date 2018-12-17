@@ -34,7 +34,6 @@
     </build>
 
     <dependencies>
-
         <!--Selenium WebDriver Java bindings-->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -89,7 +88,5 @@
             <artifactId>eyes-selenium-java3</artifactId>
             <version>[3.0.0, 3.38.3)</version>
         </dependency>
-
     </dependencies>
-
 </project>
