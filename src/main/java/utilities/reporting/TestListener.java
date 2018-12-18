@@ -5,8 +5,10 @@ import com.aventstack.extentreports.ExtentTest;
 import com.aventstack.extentreports.Status;
 import com.aventstack.extentreports.markuputils.ExtentColor;
 import com.aventstack.extentreports.markuputils.MarkupHelper;
+import org.openqa.selenium.WebDriver;
 import org.testng.*;
 import org.testng.annotations.AfterTest;
+import utilities.Screenshot;
 
 import java.io.IOException;
 import java.text.SimpleDateFormat;
@@ -20,7 +22,6 @@ import java.util.Date;
 public class TestListener implements ITestListener, ISuiteListener {
     private ExtentReports extent;
     private ThreadLocal<ExtentTest> test = new ThreadLocal<>();
-    private String screenshotPath;
 
     @Override
     public void onTestStart(ITestResult iTestResult) {
@@ -30,40 +31,34 @@ public class TestListener implements ITestListener, ISuiteListener {
     public void onTestSuccess(ITestResult iTestResult) {
         test
                 .get()
-                .createNode("This is a node at onTestSuccess")
+                .createNode(iTestResult.getMethod().getMethodName())
                 .log(Status.PASS, MarkupHelper.createLabel("PASSED", ExtentColor.GREEN));
         onFinish();
-
-        /*try {
-            screenshotPath = Screenshot.captureScreenshot(iTestResult.getName());
-            test.pass("Results Snapshot").addScreenCaptureFromPath("../" + screenshotPath);
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            test.log(Status.PASS, MarkupHelper.createLabel("PASSED", ExtentColor.GREEN));
-            onFinish();
-        }*/
     }
 
     @Override
     public void onTestFailure(ITestResult iTestResult) {
         try {
-            //screenshotPath = Screenshot.captureScreenshot(iTestResult.getName());
-            test.get().fail("Snapshot of failure").addScreenCaptureFromPath("../" + screenshotPath);
+            WebDriver driver = (WebDriver) iTestResult.getTestContext().getAttribute("driver");
+            String screenshotPath = new Screenshot(driver).captureScreenshot(iTestResult.getName());
+            test
+                    .get()
+                    .createNode(iTestResult.getMethod().getMethodName())
+                    .log(Status.FAIL, iTestResult.getThrowable().getMessage())
+                    .fail("Snapshot of failure").addScreenCaptureFromPath("../" + screenshotPath);
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
-            test
-                    .get()
-                    .createNode("This is a node at onTestFailure")
-                    .log(Status.FAIL, iTestResult.getThrowable().getMessage());
             onFinish();
         }
     }
 
     @Override
     public void onTestSkipped(ITestResult iTestResult) {
-        test.get().log(Status.SKIP, MarkupHelper.createLabel("SKIPPED", ExtentColor.ORANGE));
+        test
+                .get()
+                .createNode(iTestResult.getMethod().getMethodName())
+                .log(Status.SKIP, MarkupHelper.createLabel("SKIPPED", ExtentColor.ORANGE));
         onFinish();
     }
 
