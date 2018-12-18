@@ -5,6 +5,7 @@ import modules.AdjacentTilesModule;
 import modules.FeaturedSectionModule;
 import modules.cookiebanner.CookieBanner;
 import org.testng.Assert;
+import org.testng.ITestContext;
 import org.testng.annotations.*;
 import session.Instance;
 import session.Environment;
@@ -12,36 +13,19 @@ import session.Geo;
 import session.Page;
 import utilities.Applitools;
 import utilities.PageTestability;
+import utilities.TestHelper;
 import utilities.Wait;
 
-public class Test1 {
-
-    private Instance instance;
-    private Applitools applitools;
-    private String pageUrl = Environment.PRODUCTION + Geo.US_EN + Page.STRATEGYINDEX;
-    private PageTestability pageTestability;
+public class Test1 extends TestHelper {
 
     @BeforeClass
-    public void setup() {
+    public void setup(ITestContext iTestContext) {
         instance = new Instance();
         instance.getFirefoxOptionsInstance().setHeadless(true);
+        pageUrl = Environment.PRODUCTION + Geo.US_EN + Page.STRATEGYINDEX;
         instance.createFirefoxSessionAndNavigateTo(pageUrl, false);
+        context = setContext(iTestContext, instance.getDriver());
         pageTestability = new PageTestability(instance.getDriver());
-    }
-
-    @Test (priority = 1, groups = {"pageTestability"})
-    public void statusCodeCheck() {
-        Assert.assertEquals(pageTestability.getPageStatusResponseCode(pageUrl), 200);
-    }
-
-    @Test (priority = 2, groups = {"pageTestability"})
-    public void renderingErrorCheck() {
-        Assert.assertFalse(pageTestability.areRenderingErrorsPresent());
-    }
-
-    @Test (priority = 3, groups = {"pageTestability"})
-    public void glassmapperCheck() {
-        Assert.assertFalse(pageTestability.areGlassmapperErrorsPresent());
     }
 
     @AfterGroups (value = "pageTestability")
@@ -89,10 +73,5 @@ public class Test1 {
         adjacentTilesModule.selectModule(1, 2, 1);
         adjacentTilesModule.clickCTA();
         Assert.assertTrue(instance.getDriver().getCurrentUrl().contains("success-nokia-sustainability-management-solution"));
-    }
-
-    @AfterClass
-    public void teardown() {
-        applitools.teardown();
     }
 }
