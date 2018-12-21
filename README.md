@@ -11,7 +11,21 @@ By the way, this README file is a living documentation. As contributors (whoever
 that new feature.
 
 **Happy Automating!**
+<br/>
+<br/>
 
+## Table of Contents
+* [Prerequisites](#prerequisites)
+    * [Git](#git)
+    * [IntelliJ Idea](#intellij-idea)
+    * [Java](#java)
+* [Getting Started](#getting-started)
+* [Project Structure](#project-structure)
+* [`main` Folder](#main-folder)
+* [`test` Folder](#test-folder)
+* [Rules and Standards](#rules-and-standards)
+* [Contributing](#contributing)
+* [Limitations and Bugs](#limitations-and-bugs)
 
 
 ## Prerequisites
@@ -42,8 +56,8 @@ But, we will be sticking with IntelliJ. So we suggest you download that too. You
 
 As mentioned, the language of choice for writing our automated tests is Java. So you need to have that installed as well.
 Download the JDK & JRE [here](https://www.oracle.com/technetwork/java/javase/downloads/index.html). 
-
-
+<br/>
+<br/>
 ## Getting Started
 
 * Go to the [project's repo](https://innersource.accenture.com/users/kristian.g.maglasang/repos/test-automation-framework/browse).
@@ -54,49 +68,41 @@ Download the JDK & JRE [here](https://www.oracle.com/technetwork/java/javase/dow
     ```git
     git clone <HTTP URL>
     ```
+    
 * Now that you have a copy of the project, launch IntelliJ Idea and open the newly cloned project. Make sure to have Maven resolve all dependencies. 
 
 **_Side note: It is expected that you have some Java, WebDriver, Maven, and Linux command knowledge. That means we'll be taking liberties in not detailing some of the steps
 here (such as making sure Maven resolves all dependencies, and using `cd`)_**.
-
-
+<br/>
+<br/>
 ## Project Structure
 
 ![Alt Text](src\main\resources\images\project-structure.jpg)
+<br/>
+At a high-level, the project is composed of many files and folders, of which the important one's are described below:
+* `reports` - Tests run via XML will generate a test report. That report gets dumped in this folder.
+* `screenshots` - For failed tests, a screenshot will be taken and dumped in this folder. The screenshot will also be appended to the test report.
+* `src` - Source code. Tests and test implementations are found here.
+* `.gitignore` - Files we don't need Git to track are added here.
+* `pom.xml` - All the project's dependencies are specified in this file.
+* `README.md` - The project's documentation.
 
-    * Module design
-    * Instance
-    * Environment, Geo, Page, ResourcesFolder
-    * Data package
-    * Drivers package
-    * XML files
+The majority of your work will be contained within the `src` folder. This folder in turn contains two additional folders, `main`, and `test`. The module implementations, utilities, driver instance (and so much more) are contained within the `main` folder.
 
-* Installation instructions
-    * Git
-    * IntelliJ Idea Community Edition
+The `test` folder on the other hand contains all the tests, including step definitions. It also contains the XML files from which some of our tests are executed from.
 
-* Structure
-    * POM
-    * `reports` folder
-    * `screenshots` folder
-    * `src folder`
-    
-* Utilities
-    * NetworkRequests
-    * PageTestability
-    * TestHelper
-    * Wait
-    * TestListener & Reporting
-    * Applitools
-    * HttpResponseCode
-    * JSONParser
-   
-* Standards and Rules
-    * Ease of use
-    * Coding standards
-    * Commenting
-    * Writing tests
+In the next section, we will go through every folder and package within the `main` and `test` folders.
+<br/>
+<br/>
+## `main` Folder
+Then `main` folder will contain your module implementations, utility classes, feature files, and more.
 
-* Contributing
-    
-* Limitations
+**_This folder will not contain any test of any kind._**
+
+
+
+
+<br/>
+<br/>
+## `test` Folder
+Lorem
