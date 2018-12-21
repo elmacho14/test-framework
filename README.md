@@ -59,7 +59,6 @@ Download the JDK & JRE [here](https://www.oracle.com/technetwork/java/javase/dow
 <br/>
 <br/>
 ## Getting Started
-
 * Go to the [project's repo](https://innersource.accenture.com/users/kristian.g.maglasang/repos/test-automation-framework/browse).
 * Click the clone button and copy the HTTP URL (the one with the arrow, below your profile image at the top leftmost portion of the page).
 * On your machine, open Git Bash and **`cd`** to your desired directory/folder.
@@ -98,10 +97,80 @@ Then `main` folder will contain your module implementations, utility classes, fe
 
 **_This folder will not contain any test of any kind._**
 
+##### `java/experiments` Package
+Experimental code will be added here. And the contents of this package will vary per user, depending on what the user is experimenting on.
+<br/>
 
+##### `java/features` Package
+This package will contain feature files.\
+Suggested naming convention: _rmt1988_us004.feature_
+<br/>
 
+##### `java/modules` Package
+The old approach was to create implementations for a single page, they are called **_Page Object Models (POM)_**. The idea was to create 1 class that
+would represent 1 page. But for our purposes, this approach had maintenance issues (which we will not get into here). 
 
+Moving forward, we will instead be creating implementations for modules, **NOT PAGES**. This will help us considerably
+with maintenance. 
+
+Note that the module design will still follow that of a POM.
+<br/>
+
+##### `java/session` Package
+One of the complaints from using the original framework was that the `driversession` package was too complicated and difficult to understand. We've addressed this by having only 1 class to handle instantiating the driver object. No other classes or interfaces, just the one class, `Instance`.
+<br/>
+
+##### `java/utilities` Package
+Nothing has changed here. This package will still hold utility classes. Libraries we've created that will help us with our testing will be held in this package.
+
+Our utility classes won't follow the standard definition of a utility class: 
+
+> Utility Class, also known as Helper class, is a class, which contains just static methods, it is stateless and cannot be instantiated. It contains a bunch of related methods, so they can be reused across the application.
+
+We need them to be instantiated to support our goal of parallel testing.
+
+Perhaps we're doing utility classes wrong, but this will have to be the case for now.
+<br/>
+
+##### `/resources` Folder
+JSON files, drivers, and images are stored here.
+
+JSON is an alternative data format for our test data. Our `JSONParser` class will be reading JSON objects from this folder (**_/data_**).
+
+Drivers such as `chromedriver` and `geckodriver` is located in the **_/drivers_** package within this folder. They are essential for launching browsers.
 <br/>
 <br/>
 ## `test` Folder
-Lorem
+The `test` folder contains all the tests, including step definitions.
+
+**_This folder will not contain any implementation of any kind._**
+
+##### `java/api` Package
+This package will hold API tests.
+
+Tests to follow.
+<br/>
+
+##### `java/integration` Package
+This package will hold integration tests.
+
+The integration tests contained here will not be tests for the production code, but rather for the different libraries we've created to help with our tests.
+<br/>
+
+##### `java/performance` Package
+This package will hold performance tests.
+<br/>
+
+##### `java/system` Package
+End-to-end tests (tests performed via the user interface) will be held here. This includes step definitions, analytics tests, visual tests, and functional tests.
+<br/>
+
+##### `java/unit` Package
+This package will hold unit tests.
+
+The unit tests contained here will not be tests for the production code, but rather for the different libraries we've created to help with our tests.
+<br/>
+
+##### `/xml` Folder
+XML files are stored here. These XML files are especially useful for running batch tests and for automatic generation of test results.
+<br/>
