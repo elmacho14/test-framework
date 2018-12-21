@@ -15,17 +15,17 @@ that new feature.
 <br/>
 
 ## Table of Contents
-* [Prerequisites](#prerequisites)
-    * [Git](#git)
-    * [IntelliJ Idea](#intellij-idea)
-    * [Java](#java)
-* [Getting Started](#getting-started)
-* [Project Structure](#project-structure)
-* [`main` Folder](#main-folder)
-* [`test` Folder](#test-folder)
-* [Rules and Standards](#rules-and-standards)
-* [Contributing](#contributing)
-* [Limitations and Bugs](#limitations-and-bugs)
+* [Prerequisites](#markdown-header-prerequisites)
+    * [Git](#markdown-header-git)
+    * [IntelliJ Idea](#markdown-header-intellij-idea)
+    * [Java](#markdown-header-java)
+* [Getting Started](#markdown-header-getting-started)
+* [Project Structure](#markdown-header-project-structure)
+* [`main` Folder](#markdown-header-main-folder)
+* [`test` Folder](#markdown-header-test-folder)
+* [Rules and Standards](#markdown-header-rules-and-standards)
+* [Contributing](#markdown-header-contributing)
+* [Limitations and Bugs](#markdown-header-limitations-and-bugs)
 
 
 ## Prerequisites
@@ -76,7 +76,6 @@ here (such as making sure Maven resolves all dependencies, and using `cd`)_**.
 <br/>
 <br/>
 ## Project Structure
-
 ![Alt Text](src\main\resources\images\project-structure.jpg)
 <br/>
 At a high-level, the project is composed of many files and folders, of which the important one's are described below:
