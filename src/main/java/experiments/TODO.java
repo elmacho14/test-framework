@@ -14,7 +14,7 @@ public class TODO {
      * of the page you wish to test.
      * */
 
-    // TODO: testing
+    // TODO: Testing approach
     /*
      * Tests will be grouped inside a test class. There will no longer be the need for an XML for each individual
      * test, everything will be grouped inside the test class itself. Browser, page, geo, envi, etc. will all
@@ -31,6 +31,9 @@ public class TODO {
      * UPDATE: Implementation done. Tests suggests the module POM is working. But it still needs to be monitored.
      * Some pages might have a different attribute for the module. Also, need to check with other pages just to confirm
      * if there are no scenarios missed.
+     *
+     * Update: Cannot use the same module object once focus has shifted from it. Need to create a new object.
+     * We'll see if we need to address this.
      * */
 
     // TODO: Headless browsers
@@ -43,6 +46,8 @@ public class TODO {
      * This is no longer needed. Framework arch will no longer be based on POM, but on MOM. Meaning, every clicking
      * action (method) will no longer require the method to return an instance of the POM since we won't be creating
      * POMs anymore.
+     *
+     * Update: This won't be needed with POMs, but will be needed in say, a utility class (e.g. JSONParser)
      * */
 
     // TODO: Reporting
@@ -58,7 +63,7 @@ public class TODO {
      * Update 2: We can add BDD-style reporting, but requires a bit of work when writing the step definitions.
      * I'll try to create a custom listener for Cucumber <fingers crossed>.
      *
-     * Update 3: Nope, can't do i. Pressed for time.
+     * Update 3: Nope, can't do it. Pressed for time.
      * */
 
     // TODO: PageTestability class
@@ -68,35 +73,87 @@ public class TODO {
      * out a way yet to make it dynamic by creating a separate PageTestability test class and having all the rest
      * of the tests just call it. So current implementation will be to add it to your tests manually. Looking into
      * creating a template though to automatically insert it into the tests.
+     *
+     * Update: Created a TestHelper class that will run the PageTestability tests prior to any other tests
+     *
+     * Pondering if I need to make this class optional, if I need to make test classes stand by themselves
+     * if tester opts to not inherit TestHelper
      * */
 
-    // TODO: Cloud testing support
+    // TODO: Test Data Management
+    /*
+     * There are multiple ways of handling data. One would be via TestNG (XML and DataProvider). Second would be
+     * via the feature file. And third via JSON objects. I've created a JSONParser class that would take in as input
+     * a JSON file and parse/map it to a java object.
+     * */
+
+    // TODO: Adding nodes in reports
+    /*
+     *
+     * Unable to create test nodes for 2 or more test classes. Works for only 1.
+     * We may need to modify how tests are executed, or I may need to change the
+     * listener.
+     *
+     * This has been done. Simply added the method createNode() in the TestListener class.
+     * The catch though is that test classes has to be separated and enclosed by their own
+     * test tags in XML. Meaning, separate test tags per class. This will have to just be the
+     * compromise for now.
+     * */
+
     // TODO: README.md file
+    /*
+    * Will add a README.md file for all the framework features, standards, rules, etc.
+    * This file will be visible when you visit this project's repo.
+    *
+    * Things to document:
+    * Module design
+    * Ease of use
+    * Instance
+    * Environment, Geo, Page, ResourcesFolder
+    * NetworkRequests
+    * TestListener
+    * Applitools
+    * HttpResponseCode
+    * JSONParser
+    * PageTestability
+    * TestHelper
+    * Wait
+    * Data package
+    * Drivers package
+    * Writing tests
+    * XML files
+    * Coding standards
+    * Commenting
+    * Limitations
+    * Installation instructions
+    * Contributions
+    * Shields for READMEs - Code status
+    * */
+
+
+    // TODO: Cloud testing support
     // TODO: Continuous Integration
     // TODO: Feedback loop
-    // TODO: UI Region Testing
+    // TODO: UI Region Testing (Applitools and Ocular)
     // TODO: RCA for failed tests (UI only)
-    // TODO: Test Data Management
     // TODO: 1 Applitools batch for multiple tests
-    // TODO: Adding nodes in reports
 
     // Kristoffer, Axel, Luigi, Camille, Julien Augusto, Sembrano
     // Kevin, Gil, Lloyd, Cyle, Raymond, Jz
 
     /*
-    * LIMITATIONS
-    * Module Design
-    * Cannot use the same module object once focus has shifted from it. Need to create a new object
-    *
-    * Reporting
-    * Unable to create test nodes for 2 or more test classes. Works for only 1.
-    * We may need to modify how tests are executed, or I may need to change the
-    * listener.
-    *
-    *
-    *
-    *
-    *
-    *
-    * */
+     * REDESIGN PAGES
+     * https://www.accenture.com/us-en/
+     * https://www.accenture.com/us-en/insights/into-the-new
+     * https://www.accenture.com/us-en/insights/blockchain-index
+     * https://www.accenture.com/us-en/cloud-index
+     * https://www.accenture.com/us-en/insights/cyber-security-index
+     * https://www.accenture.com/us-en/insights/future-workforce-index
+     * https://www.accenture.com/us-en/insights/industry-x-0-index
+     * https://www.accenture.com/us-en/insights/living-business-index
+     * https://www.accenture.com/us-en/industries/automotive-index
+     * https://www.accenture.com/us-en/industries/industrial-equipment-index
+     * https://www.accenture.com/us-en/industries/life-sciences-index
+     *
+     * */
 }
