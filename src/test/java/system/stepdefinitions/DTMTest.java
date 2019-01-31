@@ -1,10 +1,27 @@
 package system.stepdefinitions;
 
+import cucumber.api.DataTable;
+import cucumber.api.java.After;
+import cucumber.api.java.Before;
+import cucumber.api.java.en.And;
+import cucumber.api.java.en.Given;
+import cucumber.api.java.en.Then;
+import cucumber.api.java.en.When;
+import modules.cookiebanner.CookieBanner;
+import net.lightbody.bmp.core.har.HarEntry;
+import org.apache.commons.lang3.StringUtils;
+import org.testng.Assert;
 import session.Instance;
+import utilities.browsermob.NetworkRequests;
+
+import java.util.*;
+
+import static utilities.Wait.waitFor;
 
 public class DTMTest extends Instance {
 
-    /*private String testEnvi;
+    private Instance instance = new Instance();
+    private String testEnvi;
     private NetworkRequests networkRequests;
     private List<HarEntry> requests;
     private CookieBanner cookieBanner;
@@ -21,13 +38,13 @@ public class DTMTest extends Instance {
     public void setup() {
         map = new HashMap<>();
         requestArr = new ArrayList<>();
-        NetworkRequests.startProxyServer();
+        networkRequests = NetworkRequests.startProxyServer(instance.getDesiredCapabilitiesInstance());
     }
 
     @After
     public void teardown() {
         NetworkRequests.stopProxyServer();
-        Instance.quitDriverSession();
+        instance.quitDriverSession();
 
     }
 
@@ -49,16 +66,16 @@ public class DTMTest extends Instance {
 
         switch (dataTable.raw().get(0).get(0)) {
             case "chrome":
-                createChromeSessionAndNavigateTo(testEnvi + geo + "/" + page, false);
+                instance.createChromeSessionAndNavigateTo(testEnvi + geo + "/" + page, false);
                 break;
             case "firefox":
-                createFirefoxSessionAndNavigateTo(testEnvi + geo + "/" + page, false);
+                instance.createFirefoxSessionAndNavigateTo(testEnvi + geo + "/" + page, false);
         }
     }
 
     @And("^I accept cookies and refresh page if geo is eu$")
     public void i_accept_cookies_and_refresh_page_if_geo_is_eu() {
-        cookieBanner = new CookieBanner();
+        cookieBanner = new CookieBanner(instance.getDriver());
         for (String geo : euGeos) {
             if (geo.equals(this.geo)) {
                 acceptCookiesAndRefresh();
@@ -68,7 +85,7 @@ public class DTMTest extends Instance {
 
     @When("^I open developer tools and check under network panel$")
     public void i_open_developer_tools_and_check_under_network_panel() {
-        networkRequests = new NetworkRequests();
+        //networkRequests = new NetworkRequests();
     }
 
     @And("^I filter using id \"([^\"]*)\"$")
@@ -127,7 +144,7 @@ public class DTMTest extends Instance {
         // but will have to do for now.
         waitFor(3);
         cookieBanner.clickAcceptCookies();
-        driver.navigate().refresh();
+        instance.getDriver().navigate().refresh();
         waitFor(3);
-    }*/
+    }
 }
