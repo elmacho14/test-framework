@@ -21,7 +21,7 @@ public class CookieBanner {
     @FindBy(css = "div.optanon-alert-box-body > p a:nth-of-type(1)") private WebElement privacyPolicyLink;
     @FindBy(css = "div.optanon-alert-box-body > p a:nth-of-type(2)']") private WebElement cookiePolicyLink;
     @FindBy(css = "a.optanon-toggle-display") private WebElement cookieSettings;
-    @FindBy(css = "a.optanon-allow-all") private WebElement acceptCookies;
+    @FindBy(css = "button[title='Accept Cookies']") private WebElement acceptCookies;
     @FindBy(css = "button[title='Close']") private WebElement closeBanner;
 
     public CookieBanner(WebDriver driver) {
