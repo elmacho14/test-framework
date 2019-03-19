@@ -15,11 +15,11 @@
 
 		<link href='https://cdn.rawgit.com/anshooarora/extentreports-java/6d3843c29c354373fafad29c03a1a89b7e06c374/dist/css/extent.css' type='text/css' rel='stylesheet' />
 	
-	<title>reports/test_11-30-2018-11.13.06.html</title>
+	<title>ExtentReports</title>
 
 </head>
 
-	<body class='extent standard default hide-overflow '>
+	<body class='extent standard default hide-overflow bdd-report'>
 		<div id='theme-selector' alt='Click to toggle theme. To enable by default, use theme configuration.' title='Click to toggle theme. To enable by default, use theme configuration.'>
 			<span><i class='material-icons'>desktop_windows</i></span>
 		</div>
@@ -35,7 +35,7 @@
 		</ul>
 
 		<!-- report name -->
-		<span class='report-name'>reports/test_11-30-2018-11.13.06.html</span>
+		<span class='report-name'>ExtentReports</span>
 		
 		<!-- report headline -->
 		<span class='report-headline'></span>
@@ -44,7 +44,7 @@
 		<ul id='nav-mobile' class='right hide-on-med-and-down nav-right'>
 			<li>
                 <a href='#!'>
-                    <span class='label suite-start-time blue darken-3'>Nov 30, 2018 11:13:06 AM</span>
+                    <span class='label suite-start-time blue darken-3'>Feb 5, 2019 02:01:51 PM</span>
 				</a>
 			</li>
 			<li>
@@ -69,8 +69,7 @@
 					<i class='material-icons'>warning</i> Status
 				</a>
 				<ul id='tests-toggle' class='dropdown-content'>
-											<li status='pass'><a href='#!'>Pass <i class='material-icons green-text'>check_circle</i></a></li>
-					<li class='divider'></li>
+										<li class='divider'></li>
 					<li status='clear' clear='true'><a href='#!'>Clear Filters <i class='material-icons'>clear</i></a></li>
 				</ul>
 			</div>
@@ -111,111 +110,170 @@
 	</section>
 
 
+<div id='test-view-charts' class='subview-full'>
+	<div id='charts-row' class='row nm-v nm-h'>
+		<div class='col s12 m4 l4 np-h'>
+			<div class='card-panel nm-v'>
+				<div class='left panel-name'>Features</div>
+				<div class='chart-box'>
+					<canvas id='parent-analysis' width='100' height='80'></canvas>
+				</div>
+				<div class='block text-small'>
+					<span class='tooltipped' data-position='top' data-tooltip='100%'><span class='strong'>7</span> feature(s) passed</span>
+				</div>
+				<div class='block text-small'>
+					<span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> feature(s) failed, <span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> others
+				</div>
+			</div>
+		</div>
+		
+		<div class='col s12 m4 l4 np-h'>
+			<div class='card-panel nm-v'>
+				<div class='left panel-name'>Scenarios</div>
+				<div class='chart-box'>
+					<canvas id='child-analysis' width='100' height='80'></canvas>
+				</div>
+				<div class='block text-small'>
+					<span class='tooltipped' data-position='top' data-tooltip='100%'><span class='strong'>7</span> scenario(s) passed</span>
+				</div>
+				<div class='block text-small'>
+					<span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> scenario(s) failed, <span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> others
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</div>
+
 	<div class='subview-left left'>
 		
 		<div class='view-summary'>
-			<h5>Tests</h5>
+			<h5>Features</h5>
 			<ul id='test-collection' class='test-collection'>
 				
 				
-				<li class='test displayed active  pass' status='pass' bdd='false' test-id='1'>
+				<li class='test displayed active has-leaf pass' status='pass' bdd='true' test-id='1'>
 					<div class='test-heading'>
-						<span class='test-name'>fimTest</span>
-						<span class='test-time'>Nov 30, 2018 11:15:01 AM</span>
+						<span class='test-name'>RMT9975 Cookie Blocking</span>
+						<span class='test-time'>Feb 5, 2019 02:01:51 PM</span>
 						<span class='test-status right pass'>pass</span>
 					</div>
 					<div class='test-content hide'>
-<div class='test-time-info'>
-	<span class='label start-time'>Nov 30, 2018 11:15:01 AM</span>
-	<span class='label end-time'>Nov 30, 2018 11:15:37 AM</span>
-	<span class='label time-taken grey lighten-1 white-text'>0h 0m 35s+927ms</span>
-</div>
-	<div class='test-steps'>
-		<table class='bordered table-results'>
-			<thead>
-				<tr>
-					<th>Status</th>
-					<th>Timestamp</th>
-					<th>Details</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr class='log' status='pass'>
-					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
-					<td class='timestamp'>11:15:37 AM</td>
-					<td class='step-details'><span class='label white-text green'>PASSED</span></td>
-				</tr>
-			</tbody>
-		</table>
+<div class='scenario node' test-id='2' status='pass'>
+	<span class='duration right label'>0h 0m 0s+0ms</span>
+	<div class='desc'>
+		<b>Scenario</b>
+		<span class="desc-text">First Party analytics is enabled</span>
 	</div>
+</div>
 					</div>
 				</li>
 				
 				
-				<li class='test displayed active  pass' status='pass' bdd='false' test-id='2'>
+				<li class='test displayed active has-leaf pass' status='pass' bdd='true' test-id='3'>
 					<div class='test-heading'>
-						<span class='test-name'>fsmTest</span>
-						<span class='test-time'>Nov 30, 2018 11:16:34 AM</span>
+						<span class='test-name'>RMT9975 Cookie Blocking</span>
+						<span class='test-time'>Feb 5, 2019 02:01:51 PM</span>
 						<span class='test-status right pass'>pass</span>
 					</div>
 					<div class='test-content hide'>
-<div class='test-time-info'>
-	<span class='label start-time'>Nov 30, 2018 11:16:34 AM</span>
-	<span class='label end-time'>Nov 30, 2018 11:16:50 AM</span>
-	<span class='label time-taken grey lighten-1 white-text'>0h 0m 15s+917ms</span>
-</div>
-	<div class='test-steps'>
-		<table class='bordered table-results'>
-			<thead>
-				<tr>
-					<th>Status</th>
-					<th>Timestamp</th>
-					<th>Details</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr class='log' status='pass'>
-					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
-					<td class='timestamp'>11:16:50 AM</td>
-					<td class='step-details'><span class='label white-text green'>PASSED</span></td>
-				</tr>
-			</tbody>
-		</table>
+<div class='scenario node' test-id='4' status='pass'>
+	<span class='duration right label'>0h 0m 0s+0ms</span>
+	<div class='desc'>
+		<b>Scenario</b>
+		<span class="desc-text">First Party analytics is enabled</span>
 	</div>
+</div>
 					</div>
 				</li>
 				
 				
-				<li class='test displayed active  pass' status='pass' bdd='false' test-id='3'>
+				<li class='test displayed active has-leaf pass' status='pass' bdd='true' test-id='5'>
 					<div class='test-heading'>
-						<span class='test-name'>atmTest</span>
-						<span class='test-time'>Nov 30, 2018 11:16:58 AM</span>
+						<span class='test-name'>RMT9975 Cookie Blocking</span>
+						<span class='test-time'>Feb 5, 2019 02:01:51 PM</span>
 						<span class='test-status right pass'>pass</span>
 					</div>
 					<div class='test-content hide'>
-<div class='test-time-info'>
-	<span class='label start-time'>Nov 30, 2018 11:16:58 AM</span>
-	<span class='label end-time'>Nov 30, 2018 11:17:04 AM</span>
-	<span class='label time-taken grey lighten-1 white-text'>0h 0m 6s+661ms</span>
-</div>
-	<div class='test-steps'>
-		<table class='bordered table-results'>
-			<thead>
-				<tr>
-					<th>Status</th>
-					<th>Timestamp</th>
-					<th>Details</th>
-				</tr>
-			</thead>
-			<tbody>
-				<tr class='log' status='pass'>
-					<td class='status pass' title='pass' alt='pass'><i class='material-icons'>check_circle</i></td>
-					<td class='timestamp'>11:17:04 AM</td>
-					<td class='step-details'><span class='label white-text green'>PASSED</span></td>
-				</tr>
-			</tbody>
-		</table>
+<div class='scenario node' test-id='6' status='pass'>
+	<span class='duration right label'>0h 0m 0s+0ms</span>
+	<div class='desc'>
+		<b>Scenario</b>
+		<span class="desc-text">First Party analytics is enabled</span>
 	</div>
+</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active has-leaf pass' status='pass' bdd='true' test-id='7'>
+					<div class='test-heading'>
+						<span class='test-name'>RMT9975 Cookie Blocking</span>
+						<span class='test-time'>Feb 5, 2019 02:01:51 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='scenario node' test-id='8' status='pass'>
+	<span class='duration right label'>0h 0m 0s+0ms</span>
+	<div class='desc'>
+		<b>Scenario</b>
+		<span class="desc-text">First Party analytics is enabled</span>
+	</div>
+</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active has-leaf pass' status='pass' bdd='true' test-id='9'>
+					<div class='test-heading'>
+						<span class='test-name'>RMT9975 Cookie Blocking</span>
+						<span class='test-time'>Feb 5, 2019 02:01:51 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='scenario node' test-id='10' status='pass'>
+	<span class='duration right label'>0h 0m 0s+0ms</span>
+	<div class='desc'>
+		<b>Scenario</b>
+		<span class="desc-text">First Party analytics is enabled</span>
+	</div>
+</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active has-leaf pass' status='pass' bdd='true' test-id='11'>
+					<div class='test-heading'>
+						<span class='test-name'>RMT9975 Cookie Blocking</span>
+						<span class='test-time'>Feb 5, 2019 02:01:51 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='scenario node' test-id='12' status='pass'>
+	<span class='duration right label'>0h 0m 0s+0ms</span>
+	<div class='desc'>
+		<b>Scenario</b>
+		<span class="desc-text">First Party analytics is enabled</span>
+	</div>
+</div>
+					</div>
+				</li>
+				
+				
+				<li class='test displayed active has-leaf pass' status='pass' bdd='true' test-id='13'>
+					<div class='test-heading'>
+						<span class='test-name'>RMT9975 Cookie Blocking</span>
+						<span class='test-time'>Feb 5, 2019 02:01:51 PM</span>
+						<span class='test-status right pass'>pass</span>
+					</div>
+					<div class='test-content hide'>
+<div class='scenario node' test-id='14' status='pass'>
+	<span class='duration right label'>0h 0m 0s+0ms</span>
+	<div class='desc'>
+		<b>Scenario</b>
+		<span class="desc-text">First Party analytics is enabled</span>
+	</div>
+</div>
 					</div>
 				</li>
 			</ul>
@@ -241,41 +299,6 @@
 	</div>
 	<!-- subview right -->
 
-
-<div id='test-view-charts' class='subview-full'>
-	<div id='charts-row' class='row nm-v nm-h'>
-		<div class='col s12 m6 l6 np-h'>
-			<div class='card-panel nm-v'>
-				<div class='left panel-name'>Tests</div>
-				<div class='chart-box'>
-					<canvas id='parent-analysis' width='100' height='80'></canvas>
-				</div>
-				<div class='block text-small'>
-					<span class='tooltipped' data-position='top' data-tooltip='100%'><span class='strong'>3</span> test(s) passed</span>
-				</div>
-				<div class='block text-small'>
-					<span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> test(s) failed, <span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> others
-				</div>
-			</div>
-		</div>
-		
-		<div class='col s12 m6 l6 np-h'>
-			<div class='card-panel nm-v'>
-				<div class='left panel-name'>Steps</div>
-				<div class='chart-box'>
-					<canvas id='child-analysis' width='100' height='80'></canvas>
-				</div>
-				<div class='block text-small'>
-					<span class='tooltipped' data-position='top' data-tooltip='100%'><span class='strong'>3</span> step(s) passed</span>
-				</div>
-				<div class='block text-small'>
-					<span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> step(s) failed, <span class='strong tooltipped' data-position='top' data-tooltip='0%'>0</span> others
-				</div>
-			</div>
-		</div>
-		
-	</div>
-</div>
 </div>
 <!-- test view -->
 <!-- category view -->
@@ -287,60 +310,38 @@
 		<div class='row'>
 			<div class='col s2'>
 				<div class='card-panel r'>
-					Tests
-					<div class='panel-lead'>3</div>
+					Features
+					<div class='panel-lead'>7</div>
+				</div>
+			</div>
+			<div class='col s2'>
+				<div class='card-panel r'>
+					Scenarios
+					<div class='panel-lead'>7</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Steps
-					<div class='panel-lead'>3</div>
+					<div class='panel-lead'>0</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Start
-					<div class='panel-lead'>Nov 30, 2018 11:13:06 AM</div>
+					<div class='panel-lead'>Feb 5, 2019 02:01:51 PM</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 			 		End
-			 		<div class='panel-lead'>Nov 30, 2018 11:17:04 AM</div>
+			 		<div class='panel-lead'>Feb 5, 2019 02:02:37 PM</div>
 				</div>
 			</div>
 			<div class='col s2'>
 				<div class='card-panel r'>
 					Time Taken
-					<div class='panel-lead'>238,027ms</div>
-				</div>
-			</div>
-			<div class='col s4'>
-				<div class='card-panel environment'>
-					<span class='right label cyan white-text'>Environment</span><p>&nbsp;</p>
-					
-					<table>
-						<tr>
-							<th>Name</th>
-							<th>Value</th>
-						</tr>
-							<tr>
-								<td>USER</td>
-								<td>kristian.g.maglasang</td>
-							</tr>
-							<tr>
-								<td>OS</td>
-								<td>Windows 10</td>
-							</tr>
-							<tr>
-								<td>OS Architecture : </td>
-								<td>amd64</td>
-							</tr>
-							<tr>
-								<td>Java Version : </td>
-								<td>1.8.0_161</td>
-							</tr>
-					</table>
+					<div class='panel-lead'>46,016ms</div>
 				</div>
 			</div>
 		</div>
@@ -353,7 +354,7 @@
 
 		<script>
 			var statusGroup = {
-				passParent: 3,
+				passParent: 7,
 				failParent: 0,
 				fatalParent: 0,
 				errorParent: 0,
@@ -361,7 +362,7 @@
 				skipParent: 0,
 				exceptionsParent: 0,
 				
-				passChild: 3,
+				passChild: 7,
 				failChild: 0,
 				fatalChild: 0,
 				errorChild: 0,

@@ -142,6 +142,6 @@ public class RMT9975Test {
     @After
     public void teardown() {
         extent.flush();
-        instance.quitDriverSession();
+        //instance.quitDriverSession();
     }
 }
